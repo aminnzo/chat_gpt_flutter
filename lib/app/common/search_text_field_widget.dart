@@ -24,6 +24,21 @@ class SearchTextFieldWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          const SizedBox(width: 8),
+          InkWell(
+            onTap:onTap,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: color, borderRadius: BorderRadius.circular(40)),
+              padding: const EdgeInsets.all(10),
+              child: const Icon(
+                textDirection: TextDirection.rtl,
+                Icons.send,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          const SizedBox(width: 5),
           Expanded(
             child: Container(
               margin: const EdgeInsets.only(left: 8),
@@ -43,17 +58,21 @@ class SearchTextFieldWidget extends StatelessWidget {
                     children: [
                       const SizedBox(width: 20),
                       Expanded(
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(maxHeight: 60),
-                          child: Scrollbar(
-                            child: TextField(
-                              style: const TextStyle(fontSize: 14),
-                              controller: textEditingController,
-                              maxLines: null,
-                              decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText:
-                                      "Open AI Waiting for your query..."),
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxHeight: 60),
+                            child: Scrollbar(
+                              child: TextField(
+                                textDirection: TextDirection.rtl,
+                                style: const TextStyle(fontSize: 14),
+                                controller: textEditingController,
+                                maxLines: null,
+                                decoration: const InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText:
+                                    "درباره خوابی که دیده‌ای توضیح بده"),
+                              ),
                             ),
                           ),
                         ),
@@ -62,19 +81,6 @@ class SearchTextFieldWidget extends StatelessWidget {
                     ],
                   ),
                 ],
-              ),
-            ),
-          ),
-          const SizedBox(width: 5),
-          InkWell(
-            onTap:onTap,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: color, borderRadius: BorderRadius.circular(40)),
-              padding: const EdgeInsets.all(10),
-              child: const Icon(
-                Icons.send,
-                color: Colors.white,
               ),
             ),
           ),

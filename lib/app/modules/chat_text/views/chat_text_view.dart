@@ -14,8 +14,8 @@ class ChatTextView extends GetView<ChatTextController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green.withOpacity(0.8),
-        title: const Text('Chat GPT Text'),
+        backgroundColor: Colors.black,
+        title: const Text('Dream Interpretation'),
         centerTitle: true,
       ),
       body: Obx(() => Column(children: [
@@ -32,17 +32,27 @@ class ChatTextView extends GetView<ChatTextController> {
               ),
             ),
             controller.state.value == ApiState.loading
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 18),
+                      child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator()),
+                    ))
                 : const SizedBox(),
             const SizedBox(height: 12),
             SearchTextFieldWidget(
-                color: Colors.green.withOpacity(0.8),
+                color: Colors.black,
                 textEditingController: controller.searchTextController,
                 onTap: () {
                   controller
                       .getTextCompletion(controller.searchTextController.text);
                 }),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
+            Text("Tokens used: ${controller.totalTokenUsed.value} == Price: \$${controller.totalDollarUsed.value}",
+                style: const TextStyle(color: Colors.red, fontSize: 8)),
+            const SizedBox(height: 10),
           ])),
     );
   }
